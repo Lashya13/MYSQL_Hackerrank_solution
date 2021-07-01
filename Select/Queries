@@ -1,0 +1,28 @@
+select * from city where population > 100000 and countrycode="USA"
+
+select name from city where population > 120000 and countrycode="USA"
+
+select * from city
+
+select * from city where ID=1661;
+
+select * from city where COUNTRYCODE='JPN';
+
+select name from city where COUNTRYCODE='JPN';
+
+select city,state from station;
+
+SELECT DISTINCT(CITY) FROM STATION WHERE (ID%2)=0 ;
+
+select count(city) - count(distinct city) from station;
+
+select city , length(city) from station order by length(city),city asc limit 1;
+select city , length(city) from station order by length(city) desc limit 1;
+
+
+select distinct city from station where city regexp "^[aeiou].*"
+
+
+SELECT DISTINCT(CITY) FROM STATION WHERE SUBSTR(REVERSE(CITY),1,1) IN ('a','e','i','o','u');
+
+select name from  Employee order by name;
