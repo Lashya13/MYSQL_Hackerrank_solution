@@ -26,3 +26,16 @@ select distinct city from station where city regexp "^[aeiou].*"
 SELECT DISTINCT(CITY) FROM STATION WHERE SUBSTR(REVERSE(CITY),1,1) IN ('a','e','i','o','u');
 
 select name from  Employee order by name;
+
+select if(A+B>C AND A+C>B AND B+C>A, IF(A=B AND B=C, 'Equilateral', IF(A=B OR B=C OR A=C, 'Isosceles','Scalene')), 'Not A Triangle') FROM TRIANGLES;
+
+    
+
+SELECT CASE
+    WHEN P IS NULL THEN CONCAT(N, ' Root')
+    WHEN N IN (SELECT DISTINCT P FROM BST) THEN CONCAT(N, ' Inner')
+    ELSE CONCAT(N, ' Leaf')
+    END
+FROM BST
+ORDER BY N ASC 
+
