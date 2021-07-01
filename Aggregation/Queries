@@ -28,3 +28,11 @@ select round(sum(long_w),4) from station
 where lat_n =(select min(lat_n) from station where lat_n>38.7780);
 
 
+SELECT salary * months AS earnings, COUNT(*)
+FROM Employee
+GROUP BY earnings
+ORDER BY earnings DESC
+LIMIT 1;
+
+SELECT CEIL(AVG(Salary)-AVG(REPLACE(Salary,'0',''))) FROM EMPLOYEES;
+
