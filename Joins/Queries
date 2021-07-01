@@ -37,3 +37,15 @@ order by count(s.hacker_id) desc, s.hacker_id asc
     having count(hacker_id) < (select max(x.challenge_count) 
     from (select count(b.challenge_id) as challenge_count from Challenges b GROUP BY b.hacker_id) as x ))
     ORDER BY count(b.hacker_id) desc, a.hacker_id 
+
+
+SELECT h.hacker_id, h.name, SUM(score) FROM (
+    SELECT hacker_id, challenge_id, MAX(score) AS score FROM SUBMISSIONS
+    GROUP BY hacker_id, challenge_id
+)t 
+JOIN Hackers h on t.hacker_id = h.hacker_id
+GROUP BY h.hacker_id, h.name
+HAVING SUM(score) > 0
+ORDER BY SUM(score) desc, h.hacker_id
+
+
