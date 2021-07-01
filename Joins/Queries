@@ -12,3 +12,28 @@ select country.continent, floor(avg(city.population))
 from city join country
 on city.countrycode =country.code
 group by country.continent;
+
+
+select h.hacker_id, h.name
+from submissions s
+inner join challenges c
+on s.challenge_id = c.challenge_id
+inner join difficulty d
+on c.difficulty_level = d.difficulty_level 
+inner join hackers h
+on s.hacker_id = h.hacker_id
+where s.score = d.score and c.difficulty_level = d.difficulty_level
+group by h.hacker_id, h.name
+having count(s.hacker_id) > 1
+order by count(s.hacker_id) desc, s.hacker_id asc
+
+ select a.hacker_id,a.name,count(b.hacker_id)    
+    from Hackers a, Challenges b
+    WHERE a.hacker_id = b.hacker_id
+    GROUP BY a.hacker_id,a.name
+    HAVING count(b.hacker_id) not in (select  distinct count(hacker_id) from Challenges
+    WHERE hacker_id <> a.hacker_id
+    group by hacker_id
+    having count(hacker_id) < (select max(x.challenge_count) 
+    from (select count(b.challenge_id) as challenge_count from Challenges b GROUP BY b.hacker_id) as x ))
+    ORDER BY count(b.hacker_id) desc, a.hacker_id 
